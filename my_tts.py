@@ -8,16 +8,17 @@ tts.setProperty('volume', 0.8)  # громкость от 0 до 1
 
 voices = tts.getProperty('voices')
 for voice in voices:
-    print(voice.id)
-
+    print(voice.name)
+'''
 for voice in voices:
     if 'Irina' in voice.name:
         tts.setProperty('voice', voice.id)
+'''
 
 
 def say_time(s):
     tts.say(s)
-    tts.runAndWait
+    tts.runAndWait()
 
 
 time_checker = datetime.now()

@@ -2,6 +2,7 @@ from tkinter import Tk, Frame, Label, Text, Scrollbar, \
     Button, PhotoImage, END, W, E
 import translators as ts
 from textblob import TextBlob as detect
+import pyttsx3
 
 
 def window():
@@ -34,10 +35,19 @@ def translate(get_text):
     lab0['text'] = f'{indetect}↔{langout}'
     lab2['text'] = langout
 
-    output = ts.google(get_text, to_language=langout, if_use_cn_host=True)
+    # output = ts.ts.google(get_text, to_language=langout, if_use_cn_host=True)
+    output = ts.bing(get_text, to_language=langout, if_use_cn_host=False)
     text2.delete(1.0, END)
     text2.insert(END, output)
+    tts.say(output)
+    tts.runAndWait()
 
+
+tts = pyttsx3.init()
+voices = tts.getProperty('voices')
+for voice in voices:
+    if 'Irina' in voice.name:
+        tts.setProperty('voice', voice.id)
 
 root = Tk()
 root.title('VermaksTranslate')
